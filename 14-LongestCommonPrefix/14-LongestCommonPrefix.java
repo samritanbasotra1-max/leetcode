@@ -1,4 +1,4 @@
-// Last updated: 27/06/2026, 23:58:30
+// Last updated: 11/07/2026, 22:32:12
 1class Solution {
 2    public String longestCommonPrefix(String[] strs) {
 3        if (strs == null || strs.length == 0) return "";
