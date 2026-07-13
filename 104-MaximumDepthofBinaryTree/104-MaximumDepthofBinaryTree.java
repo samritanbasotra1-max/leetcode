@@ -1,4 +1,4 @@
-// Last updated: 13/07/2026, 15:41:24
+// Last updated: 13/07/2026, 15:55:47
 1/**
 2 * Definition for a binary tree node.
 3 * public class TreeNode {
@@ -14,16 +14,23 @@
 13 *     }
 14 * }
 15 */
-16class Solution {
-17    public int maxDepth(TreeNode root) {
-18
-19        if (root==null){
-20            return 0;
-21        }
-22        int left=maxDepth(root.left);
-23        int right=maxDepth(root.right);
-24
-25        return 1+Math.max(left,right);
-26        
-27    }
-28}
+16
+17class Solution {
+18    public boolean isSameTree(TreeNode p, TreeNode q) {
+19
+20        if (p == null && q == null) {
+21            return true;
+22        }
+23
+24        if (p == null || q == null) {
+25            return false;
+26        }
+27
+28        if (p.val != q.val) {
+29            return false;
+30        }
+31
+32        return isSameTree(p.left, q.left)
+33                && isSameTree(p.right, q.right);
+34    }
+35}
