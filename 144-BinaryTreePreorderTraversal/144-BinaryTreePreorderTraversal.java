@@ -1,24 +1,39 @@
-// Last updated: 14/07/2026, 18:00:08
-1class Solution {
-2
-3    List<Integer> ans = new ArrayList<>();
-4
-5    public List<Integer> inorderTraversal(TreeNode root) {
-6
-7        inorder(root);
-8
-9        return ans;
-10    }
-11
-12    private void inorder(TreeNode root) {
-13
-14        if (root == null)
-15            return;
-16
-17        inorder(root.left);
-18
-19        ans.add(root.val);
-20
-21        inorder(root.right);
-22    }
-23}
+// Last updated: 14/07/2026, 18:02:41
+1/**
+2 * Definition for a binary tree node.
+3 * public class TreeNode {
+4 *     int val;
+5 *     TreeNode left;
+6 *     TreeNode right;
+7 *     TreeNode() {}
+8 *     TreeNode(int val) { this.val = val; }
+9 *     TreeNode(int val, TreeNode left, TreeNode right) {
+10 *         this.val = val;
+11 *         this.left = left;
+12 *         this.right = right;
+13 *     }
+14 * }
+15 */
+16class Solution {
+17
+18    List<Integer> ans = new ArrayList<>();
+19
+20    public List<Integer> postorderTraversal(TreeNode root) {
+21
+22        postorder(root);
+23
+24        return ans;
+25    }
+26
+27    private void postorder(TreeNode root) {
+28
+29        if (root == null)
+30            return;
+31
+32        postorder(root.left);
+33
+34        postorder(root.right);
+35
+36        ans.add(root.val);
+37    }
+38}
