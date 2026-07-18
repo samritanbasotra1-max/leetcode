@@ -1,4 +1,4 @@
-// Last updated: 17/07/2026, 23:29:14
+// Last updated: 18/07/2026, 10:55:38
 1/**
 2 * Definition for a binary tree node.
 3 * public class TreeNode {
@@ -14,21 +14,20 @@
 13 *     }
 14 * }
 15 */
-16
-17class Solution {
-18    public boolean hasPathSum(TreeNode root, int targetSum) {
-19
-20        if (root == null) {
-21            return false;
-22        }
-23
-24        targetSum -= root.val;
-25
-26        if (root.left == null && root.right == null) {
-27            return targetSum == 0;
-28        }
+16class Solution {
+17    public boolean isValidBST(TreeNode root) {
+18        return validate(root,Long.MIN_VALUE,Long.MAX_VALUE);
+19        
+20    }
+21    private boolean validate(TreeNode root,long min,long max){
+22
+23        if(root==null)
+24            return true;
+25         
+26          
+27          if(root.val<=min || root.val>= max)
+28          return false;
 29
-30        return hasPathSum(root.left, targetSum)
-31                || hasPathSum(root.right, targetSum);
-32    }
-33}
+30     return validate(root.left,min,root.val) && validate(root.right, root.val ,max);
+31    }
+32}
