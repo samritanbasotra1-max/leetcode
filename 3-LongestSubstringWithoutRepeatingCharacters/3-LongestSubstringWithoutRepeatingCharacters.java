@@ -1,30 +1,28 @@
-// Last updated: 10/07/2026, 23:04:15
-1import java.util.HashSet;
-2
-3class Solution {
-4
-5    public int lengthOfLongestSubstring(String s) {
-6
-7        HashSet<Character> set = new HashSet<>();
-8
-9        int left = 0;
-10        int maxLength = 0;
+// Last updated: 26/07/2026, 15:47:43
+1class Solution {
+2    public int characterReplacement(String s, int k) {
+3
+4        int[] freq = new int[26];
+5
+6        int left = 0;
+7        int maxFreq = 0;
+8        int ans = 0;
+9
+10        for (int right = 0; right < s.length(); right++) {
 11
-12        for (int right = 0; right < s.length(); right++) {
-13
+12            char ch = s.charAt(right);
+13            freq[ch - 'A']++;
 14
-15            while (set.contains(s.charAt(right))) {
-16                set.remove(s.charAt(left));
-17                left++;
-18            }
-19
-20            
-21            set.add(s.charAt(right));
-22
-23            
-24            maxLength = Math.max(maxLength, right - left + 1);
-25        }
-26
-27        return maxLength;
-28    }
-29}
+15            maxFreq = Math.max(maxFreq, freq[ch - 'A']);
+16
+17            while ((right - left + 1) - maxFreq > k) {
+18                freq[s.charAt(left) - 'A']--;
+19                left++;
+20            }
+21
+22            ans = Math.max(ans, right - left + 1);
+23        }
+24
+25        return ans;
+26    }
+27}
