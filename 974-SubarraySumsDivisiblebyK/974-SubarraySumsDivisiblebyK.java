@@ -1,6 +1,6 @@
-// Last updated: 29/07/2026, 22:42:09
+// Last updated: 29/07/2026, 22:46:04
 1class Solution {
-2    public int subarraysDivByK(int[] nums, int k) {
+2    public int numSubarraysWithSum(int[] nums, int goal) {
 3
 4        HashMap<Integer, Integer> map = new HashMap<>();
 5
@@ -13,15 +13,13 @@
 12
 13            sum += num;
 14
-15            int rem = ((sum % k) + k) % k;
-16
-17            if (map.containsKey(rem)) {
-18                count += map.get(rem);
-19            }
-20
-21            map.put(rem, map.getOrDefault(rem, 0) + 1);
-22        }
-23
-24        return count;
-25    }
-26}
+15            if (map.containsKey(sum - goal)) {
+16                count += map.get(sum - goal);
+17            }
+18
+19            map.put(sum, map.getOrDefault(sum, 0) + 1);
+20        }
+21
+22        return count;
+23    }
+24}
